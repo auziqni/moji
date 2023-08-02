@@ -31,6 +31,7 @@ const routes = [
   },
 ];
 
+// todo : kalo bagian dipilih maka sidebar nutup
 export const Sidebar = () => {
   const pathname = usePathname();
 

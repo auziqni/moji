@@ -1,4 +1,4 @@
-// import Navbar from "@/components/navbar";
+import Navbar from "@/components/navbar";
 import { Sidebar } from "@/components/sidebar";
 
 const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
@@ -8,7 +8,7 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
         <Sidebar />
       </div>
       <main className="md:pl-72 pb-10">
-        {/* <Navbar /> */}
+        <Navbar />
         {children}
       </main>
     </div>
