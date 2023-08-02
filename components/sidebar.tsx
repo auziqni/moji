@@ -36,8 +36,8 @@ export const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="space-y-4  flex flex-col h-full bg-[#E4EFE7] text-black">
-      <div className="h-32 bg-[#064420] py-5">
+    <div className="space-y-4  flex flex-col h-full bg-[#001f00] text-black">
+      <div className="h-32  py-5">
         <Link
           href="/dashboard"
           className="flex items-center pl-3 mb-14 mx-auto"
@@ -65,9 +65,9 @@ export const Sidebar = () => {
               key={route.href}
               href={route.href}
               className={cn(
-                "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-black hover:bg-green-900/20 rounded-lg transition",
+                "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition",
                 pathname === route.href
-                  ? "text-black bg-green-900/20"
+                  ? "text-white bg-white/10"
                   : "text-zinc-400"
               )}
             >
