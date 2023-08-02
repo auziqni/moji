@@ -12,7 +12,7 @@ const Navbar = async () => {
   //   const isPro = await checkSubscription();
   // bg-[#E4EFE7]
   return (
-    <div className="flex w-full items-center p-4 shadow-lg bg-white  border border-solid border-b-black">
+    <div className="flex sticky top-0 z-20 h-12 items-center p-4 shadow-lg bg-white  border border-solid border-b-black ">
       <MobileSidebar />
       {/* <MobileSidebar isPro={isPro} apiLimitCount={apiLimitCount} /> */}
       <div className="flex w-full justify-end">

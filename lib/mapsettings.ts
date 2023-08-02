@@ -1,6 +1,6 @@
 export const mapContainerStyle = {
-  height: "100vh",
-  width: "100vw",
+  height: "calc(100vh - 3rem)",
+  width: "100%",
 };
 export const options = {
   disableDefaultUI: true,
