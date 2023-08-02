@@ -12,7 +12,7 @@ const Navbar = async () => {
   //   const isPro = await checkSubscription();
 
   return (
-    <div className="flex items-center p-4 shadow-lg">
+    <div className="flex items-center p-4 shadow-lg bg-[#E4EFE7]">
       <MobileSidebar />
       {/* <MobileSidebar isPro={isPro} apiLimitCount={apiLimitCount} /> */}
       <div className="flex w-full justify-end">

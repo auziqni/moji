@@ -37,10 +37,16 @@ export const Sidebar = () => {
 
   return (
     <div className="space-y-4  flex flex-col h-full bg-[#f3f3f3] text-black">
-      <div className="h-20 bg-green-700 py-5">
-        <Link href="/dashboard" className="flex items-center pl-3 mb-14">
-          <div className="relative h-8 w-8 mr-4">
-            <Image fill alt="Logo" src="/logo.png" />
+      <div className="h-32 bg-[#064420] py-5">
+        <Link
+          href="/dashboard"
+          className="flex items-center pl-3 mb-14 mx-auto"
+        >
+          <div
+            className="relative h-20 w-20
+           mr-4"
+          >
+            <Image fill alt="Logo" src="/logo.png" className="rounded-lg" />
           </div>
           <h1
             className={cn(
