@@ -20,5 +20,5 @@ type Jamaah = {
   lat: number;
   lng: number;
   temp: number;
-  moist: number;
+  humid: number;
 } | null;

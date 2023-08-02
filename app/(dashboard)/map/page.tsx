@@ -121,7 +121,7 @@ export default function Home() {
 
               <h2 className="text-md">
                 <span>temp: </span> <span>{selected.temp}</span>{" "}
-                <span>moist: </span> <span>{selected.moist}</span>
+                <span>humid: </span> <span>{selected.humid}</span>
               </h2>
               <h2 className="text-md"></h2>
             </div>

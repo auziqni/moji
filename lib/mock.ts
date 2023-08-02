@@ -7,7 +7,7 @@ export const parajamaah: Jamaah[] = [
     lat: -5.361766,
     lng: 105.225637,
     temp: 37.5,
-    moist: 60,
+    humid: 60,
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ export const parajamaah: Jamaah[] = [
     lat: -5.363089,
     lng: 105.225106,
     temp: 36.9,
-    moist: 55,
+    humid: 55,
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ export const parajamaah: Jamaah[] = [
     lat: -5.373362,
     lng: 105.230142,
     temp: 38.2,
-    moist: 62,
+    humid: 62,
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ export const parajamaah: Jamaah[] = [
     lat: -5.373682,
     lng: 105.229958,
     temp: 36.6,
-    moist: 58,
+    humid: 58,
   },
   {
     id: 5,
@@ -47,7 +47,7 @@ export const parajamaah: Jamaah[] = [
     lat: -5.373991,
     lng: 105.237774,
     temp: 37.0,
-    moist: 63,
+    humid: 63,
   },
   {
     id: 6,
@@ -57,7 +57,7 @@ export const parajamaah: Jamaah[] = [
     lat: -5.396602,
     lng: 105.258664,
     temp: 37.8,
-    moist: 56,
+    humid: 56,
   },
   // Add more jamaah data here up to 20 items
 ];
