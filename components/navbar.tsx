@@ -10,9 +10,9 @@ import { MobileSidebar } from "./mobile-sidebar";
 const Navbar = async () => {
   //   const apiLimitCount = await getApiLimitCount();
   //   const isPro = await checkSubscription();
-
+  // bg-[#E4EFE7]
   return (
-    <div className="flex items-center p-4 shadow-lg bg-[#E4EFE7]">
+    <div className="flex w-full items-center p-4 shadow-lg bg-white  border border-solid border-b-black">
       <MobileSidebar />
       {/* <MobileSidebar isPro={isPro} apiLimitCount={apiLimitCount} /> */}
       <div className="flex w-full justify-end">

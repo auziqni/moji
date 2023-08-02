@@ -36,7 +36,7 @@ export const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="space-y-4  flex flex-col h-full bg-[#f3f3f3] text-black">
+    <div className="space-y-4  flex flex-col h-full bg-[#E4EFE7] text-black">
       <div className="h-32 bg-[#064420] py-5">
         <Link
           href="/dashboard"
@@ -46,7 +46,7 @@ export const Sidebar = () => {
             className="relative h-20 w-20
            mr-4"
           >
-            <Image fill alt="Logo" src="/logome.png" sizes="" priority={true} />
+            <Image fill alt="Logo" src="/logo.jpg" sizes="" priority={true} />
           </div>
           <h1
             className={cn(
