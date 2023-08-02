@@ -59,6 +59,7 @@ export default function Home() {
         className="z-10 border-none absolute top-32 right-6  h-6 w-6 bg-red-700"
         onClick={handleSetLocationToNull}
       ></button>
+
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}
@@ -118,7 +119,11 @@ export default function Home() {
               <h2 className=" text-lg">
                 {selected.name} <span>{selected.age} </span>
               </h2>
-
+              <h2 className="text-md">
+                <span>{selected.negara}</span>
+                {", "}
+                <span>{selected.rombongan}</span>
+              </h2>
               <h2 className="text-md">
                 <span>temp: </span> <span>{selected.temp}</span>{" "}
                 <span>humid: </span> <span>{selected.humid}</span>

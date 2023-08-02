@@ -17,6 +17,8 @@ type Jamaah = {
   name: string;
   gendermale: boolean;
   age: number;
+  negara: string;
+  rombongan: string;
   lat: number;
   lng: number;
   temp: number;
