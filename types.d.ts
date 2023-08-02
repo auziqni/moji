@@ -7,11 +7,11 @@ type Data = {
   date: Date;
 } | null;
 
-type jamaah = {
+type Jamaah = {
   id: number;
   name: string;
   gender: string;
-  age: string;
+  age: number;
   lat: number;
   lng: number;
   temp: number;

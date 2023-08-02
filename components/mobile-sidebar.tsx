@@ -19,19 +19,18 @@ export const MobileSidebar = () => {
   }
 
   return (
-    // <Button variant={"ghost"} size="icon" className="md:hidden">
-    //   <Menu>asas</Menu>
-    // </Button>
-    <Sheet>
-      <SheetTrigger>
-        <Button variant="ghost" size="icon" className="md:hidden">
-          <Menu />
-        </Button>
-      </SheetTrigger>
-      <SheetContent side="left" className="p-0">
-        <Sidebar />
-        {/* <Sidebar isPro={isPro} apiLimitCount={apiLimitCount} /> */}
-      </SheetContent>
-    </Sheet>
+    <div>
+      <Sheet>
+        <SheetTrigger>
+          <Button variant="ghost" size="icon" className="md:hidden">
+            {/* <Menu />
+             */}
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="left" className="p-0">
+          <Sidebar />
+        </SheetContent>
+      </Sheet>
+    </div>
   );
 };

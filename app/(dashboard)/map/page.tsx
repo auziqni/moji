@@ -66,9 +66,15 @@ export default function Home() {
           <Marker
             key={0}
             position={{ lat: myLocation.lat, lng: myLocation.lng }}
+            icon={{
+              url: "/me.png",
+              origin: new window.google.maps.Point(0, 0),
+              anchor: new window.google.maps.Point(15, 15),
+              scaledSize: new window.google.maps.Size(45, 45),
+            }}
           ></Marker>
         ) : (
-          <div></div>
+          <></>
         )}
       </GoogleMap>
     </main>

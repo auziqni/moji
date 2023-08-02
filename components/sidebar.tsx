@@ -46,7 +46,7 @@ export const Sidebar = () => {
             className="relative h-20 w-20
            mr-4"
           >
-            <Image fill alt="Logo" src="/logo.png" className="rounded-lg" />
+            <Image fill alt="Logo" src="/logome.png" sizes="" priority={true} />
           </div>
           <h1
             className={cn(
