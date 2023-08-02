@@ -1,21 +1,21 @@
+"use client";
 import { UserButton } from "@clerk/nextjs";
 import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
 import { MobileSidebar } from "./mobile-sidebar";
+import { usePathname } from "next/navigation";
 
-// import { MobileSidebar } from "@/components/mobile-sidebar";
-// import { getApiLimitCount } from "@/lib/api-limit";
-// import { checkSubscription } from "@/lib/subscription";
+const Navbar = () => {
+  const pathName = usePathname();
+  // const currentPage = router.pathname;
 
-const Navbar = async () => {
-  //   const apiLimitCount = await getApiLimitCount();
-  //   const isPro = await checkSubscription();
   // bg-[#E4EFE7]
   return (
     <div className="flex sticky top-0 z-20 h-12 items-center p-4 shadow-lg bg-white  border border-solid border-b-black ">
       <MobileSidebar />
+      <h1>{getPageDecription(pathName)}</h1>
       {/* <MobileSidebar isPro={isPro} apiLimitCount={apiLimitCount} /> */}
-      <div className="flex w-full justify-end">
+      <div className="flex w-full justify-end p-3">
         <UserButton afterSignOutUrl="/" />
       </div>
     </div>
@@ -23,3 +23,16 @@ const Navbar = async () => {
 };
 
 export default Navbar;
+
+function getPageDecription(path: string) {
+  switch (path) {
+    case "/":
+      return "Home";
+    case "/map":
+      return "Map";
+    case "/settings":
+      return "Settings";
+    default:
+      return "Dashboard";
+  }
+}
