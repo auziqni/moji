@@ -5,13 +5,21 @@ import {
   useJsApiLoader,
   Marker,
   InfoWindow,
+  Circle,
 } from "@react-google-maps/api";
 
 // import usePlacesAutocomplete, {
 //   getGeocode,
 //   getLatLng,
 // } from "use-places-autocomplete";
-import { mapContainerStyle, center, options } from "@/lib/mapsettings";
+import {
+  mapContainerStyle,
+  center,
+  options,
+  closeOptions,
+  middleOptions,
+  farOptions,
+} from "@/lib/mapsettings";
 import { parajamaah } from "@/lib/mock";
 
 export default function Home() {
@@ -46,6 +54,7 @@ export default function Home() {
   return (
     <main>
       <Locate panTo={panTo} />
+
       <button
         className="z-10 border-none absolute top-32 right-6  h-6 w-6 bg-red-700"
         onClick={handleSetLocationToNull}
@@ -58,17 +67,24 @@ export default function Home() {
         options={options}
         onLoad={onMapLoad}
       >
+        {/* todo: disable click on other pin */}
+        {/* todo: cluster pin */}
         {myLocation ? (
-          <Marker
-            key={0}
-            position={{ lat: myLocation.lat, lng: myLocation.lng }}
-            icon={{
-              url: "/me.png",
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(15, 15),
-              scaledSize: new window.google.maps.Size(45, 45),
-            }}
-          ></Marker>
+          <>
+            <Marker
+              key={0}
+              position={{ lat: myLocation.lat, lng: myLocation.lng }}
+              icon={{
+                url: "/me.png",
+                origin: new window.google.maps.Point(0, 0),
+                anchor: new window.google.maps.Point(15, 15),
+                scaledSize: new window.google.maps.Size(45, 45),
+              }}
+            ></Marker>
+            <Circle center={myLocation} radius={1500} options={closeOptions} />
+            <Circle center={myLocation} radius={3000} options={middleOptions} />
+            <Circle center={myLocation} radius={4500} options={farOptions} />
+          </>
         ) : (
           <></>
         )}
