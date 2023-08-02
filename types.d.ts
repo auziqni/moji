@@ -7,13 +7,18 @@ type Data = {
   date: Date;
 } | null;
 
+type MyLocation = {
+  lat: number;
+  lng: number;
+} | null;
+
 type Jamaah = {
   id: number;
   name: string;
-  gender: string;
+  gendermale: boolean;
   age: number;
   lat: number;
   lng: number;
   temp: number;
   moist: number;
-};
+} | null;

@@ -12,16 +12,12 @@ import {
 //   getLatLng,
 // } from "use-places-autocomplete";
 import { mapContainerStyle, center, options } from "@/lib/mapsettings";
-import { type } from "os";
+import { parajamaah } from "@/lib/mock";
 
-type MyLocation = {
-  lat: number;
-  lng: number;
-} | null;
 export default function Home() {
   // const [markers, setMarkers] = useState<Data[]>([]);
 
-  const [selected, setSelected] = useState<Data>(null);
+  const [selected, setSelected] = useState<Jamaah>(null);
   const [myLocation, setMyLocation] = useState<MyLocation | null>(null);
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
@@ -76,6 +72,45 @@ export default function Home() {
         ) : (
           <></>
         )}
+
+        {parajamaah.map((jamaah) => (
+          <Marker
+            key={jamaah?.id}
+            position={{ lat: jamaah?.lat ?? 0, lng: jamaah?.lng ?? 0 }}
+            onClick={() => {
+              setSelected(jamaah);
+            }}
+            icon={{
+              url: `${
+                jamaah?.gendermale ? "/place_male.png" : "/place_female.png"
+              }`,
+              origin: new window.google.maps.Point(0, 0),
+              anchor: new window.google.maps.Point(15, 15),
+              scaledSize: new window.google.maps.Size(45, 45),
+            }}
+          />
+        ))}
+
+        {selected ? (
+          <InfoWindow
+            position={{ lat: selected.lat, lng: selected.lng }}
+            onCloseClick={() => {
+              setSelected(null);
+            }}
+          >
+            <div className="text-black ">
+              <h2 className=" text-lg">
+                {selected.name} <span>{selected.age} </span>
+              </h2>
+
+              <h2 className="text-md">
+                <span>temp: </span> <span>{selected.temp}</span>{" "}
+                <span>moist: </span> <span>{selected.moist}</span>
+              </h2>
+              <h2 className="text-md"></h2>
+            </div>
+          </InfoWindow>
+        ) : null}
       </GoogleMap>
     </main>
   );

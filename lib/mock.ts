@@ -1,8 +1,8 @@
-const parajamaah: Jamaah[] = [
+export const parajamaah: Jamaah[] = [
   {
     id: 1,
     name: "John Doe",
-    gender: "Male",
+    gendermale: true,
     age: 30,
     lat: -5.361766,
     lng: 105.225637,
@@ -12,7 +12,7 @@ const parajamaah: Jamaah[] = [
   {
     id: 2,
     name: "Jane Doe",
-    gender: "Female",
+    gendermale: false,
     age: 25,
     lat: -5.363089,
     lng: 105.225106,
@@ -22,7 +22,7 @@ const parajamaah: Jamaah[] = [
   {
     id: 3,
     name: "Michael Smith",
-    gender: "Male",
+    gendermale: true,
     age: 40,
     lat: -5.373362,
     lng: 105.230142,
@@ -32,7 +32,7 @@ const parajamaah: Jamaah[] = [
   {
     id: 4,
     name: "Emily Johnson",
-    gender: "Female",
+    gendermale: false,
     age: 22,
     lat: -5.373682,
     lng: 105.229958,
@@ -42,7 +42,7 @@ const parajamaah: Jamaah[] = [
   {
     id: 5,
     name: "David Lee",
-    gender: "Male",
+    gendermale: true,
     age: 35,
     lat: -5.373991,
     lng: 105.237774,
@@ -52,7 +52,7 @@ const parajamaah: Jamaah[] = [
   {
     id: 6,
     name: "Emma Chen",
-    gender: "Female",
+    gendermale: false,
     age: 28,
     lat: -5.396602,
     lng: 105.258664,
