@@ -23,4 +23,9 @@ type Jamaah = {
   lng: number;
   temp: number;
   humid: number;
-} | null;
+};
+
+type CardMonitorJamaah = {
+  tittle: string;
+  jumlah: number;
+};

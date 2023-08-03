@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Payment, columns } from "./columns";
-import { DataTable } from "./data-table";
+import Table from "@/components/table";
+import { CardsMonitorJamaah } from "@/lib/mock";
 
 const notifications = [
   {
@@ -18,50 +18,36 @@ const notifications = [
   },
 ];
 
-const data: Payment[] = [
-  {
-    id: "128ed52a",
-    amount: 100,
-    status: "success",
-    email: "asd@kami.com",
-  },
-  {
-    id: "228ed52b",
-    amount: 78,
-    status: "pending",
-    email: "qwe@umam.com",
-  },
-  {
-    id: "328ed52c",
-    amount: 23,
-    status: "pending",
-    email: "zxc@latif.com",
-  },
-];
-
 export default function Dashboard() {
   return (
     <div className="p-5">
-      <div className=" grid md:grid-cols-2 lg:grid-cols-4 gap-3  mb-10 p-5">
-        <Mycard />
-        <Mycard />
-        <Mycard />
-        <Mycard />
+      <div className=" grid md:grid-cols-2 lg:grid-cols-4 gap-3   p-5">
+        {CardsMonitorJamaah.map((card) => (
+          <div className=" rounded-xl p-1 pl-2 border border-solid border-black ">
+            <h2 className="text-xs">{card.tittle}</h2>
+            <h1 className="text-2xl text-right pr-4 font-semibold">
+              {card.jumlah}
+            </h1>
+            {/* <h3 className="text-xs">orang</h3> */}
+          </div>
+        ))}
       </div>
 
-      <div className="h-40 ">
-        <DataTable columns={columns} data={data} />
+      <div className="p-5">
+        <Table />
       </div>
     </div>
   );
 }
 
-function Mycard() {
+const Person: React.FC<CardMonitorJamaah> = (personData) => {
   return (
     <div className=" rounded-xl p-1 pl-2 border border-solid border-black ">
-      <h2 className="text-xs">Total Jamaah</h2>
-      <h1 className="text-2xl text-right pr-4 font-semibold">1200</h1>
+      <h2 className="text-xs">{personData.tittle}</h2>
+      <h1 className="text-2xl text-right pr-4 font-semibold">
+        {personData.jumlah}
+      </h1>
       {/* <h3 className="text-xs">orang</h3> */}
     </div>
   );
-}
+};

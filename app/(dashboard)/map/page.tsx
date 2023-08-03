@@ -25,7 +25,7 @@ import { parajamaah } from "@/lib/mock";
 export default function Home() {
   // const [markers, setMarkers] = useState<Data[]>([]);
 
-  const [selected, setSelected] = useState<Jamaah>(null);
+  const [selected, setSelected] = useState<Jamaah | null>(null);
   const [myLocation, setMyLocation] = useState<MyLocation | null>(null);
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",

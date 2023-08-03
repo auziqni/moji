@@ -15,7 +15,7 @@ export const parajamaah: Jamaah[] = [
     id: 2,
     name: "Jane Doe",
     gendermale: false,
-    age: 25,
+    age: 54,
     negara: "indonesia",
     rombongan: "al-syahid",
     lat: -5.363089,
@@ -27,7 +27,7 @@ export const parajamaah: Jamaah[] = [
     id: 3,
     name: "Michael Smith",
     gendermale: true,
-    age: 40,
+    age: 41,
     negara: "indonesia",
     rombongan: "al-syahid",
     lat: -5.373362,
@@ -39,7 +39,7 @@ export const parajamaah: Jamaah[] = [
     id: 4,
     name: "Emily Johnson",
     gendermale: false,
-    age: 22,
+    age: 33,
     negara: "indonesia",
     rombongan: "al-syahid",
     lat: -5.373682,
@@ -51,7 +51,7 @@ export const parajamaah: Jamaah[] = [
     id: 5,
     name: "David Lee",
     gendermale: true,
-    age: 35,
+    age: 39,
     negara: "indonesia",
     rombongan: "al-syahid",
     lat: -5.373991,
@@ -72,4 +72,25 @@ export const parajamaah: Jamaah[] = [
     humid: 56,
   },
   // Add more jamaah data here up to 20 items
+];
+// table;
+
+export const CardsMonitorJamaah: CardMonitorJamaah[] = [
+  {
+    tittle: "Jumlah Jamaah",
+    jumlah: parajamaah.length,
+  },
+  {
+    tittle: "Jamaah Pria",
+    jumlah: parajamaah.filter((person) => person.gendermale).length,
+  },
+  {
+    tittle: "Jamaah Wanita",
+    jumlah: parajamaah.filter((person) => !person.gendermale).length,
+  },
+
+  {
+    tittle: "Jumlah Jamaah Lansia",
+    jumlah: parajamaah.filter((person) => person.age > 50).length,
+  },
 ];
