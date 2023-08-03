@@ -26,6 +26,7 @@ type Jamaah = {
 };
 
 type CardMonitorJamaah = {
+  id: number;
   tittle: string;
   jumlah: number;
 };

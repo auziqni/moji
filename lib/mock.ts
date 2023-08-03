@@ -77,19 +77,23 @@ export const parajamaah: Jamaah[] = [
 
 export const CardsMonitorJamaah: CardMonitorJamaah[] = [
   {
+    id: 1,
     tittle: "Jumlah Jamaah",
     jumlah: parajamaah.length,
   },
   {
+    id: 2,
     tittle: "Jamaah Pria",
     jumlah: parajamaah.filter((person) => person.gendermale).length,
   },
   {
+    id: 3,
     tittle: "Jamaah Wanita",
     jumlah: parajamaah.filter((person) => !person.gendermale).length,
   },
 
   {
+    id: 4,
     tittle: "Jumlah Jamaah Lansia",
     jumlah: parajamaah.filter((person) => person.age > 50).length,
   },
