@@ -8,10 +8,6 @@ import {
   Circle,
 } from "@react-google-maps/api";
 
-// import usePlacesAutocomplete, {
-//   getGeocode,
-//   getLatLng,
-// } from "use-places-autocomplete";
 import {
   mapContainerStyle,
   center,

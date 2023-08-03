@@ -6,8 +6,10 @@ import { Button } from "./button";
 import Link from "next/link";
 import "./navbar.css";
 import Dropdown from "./dropdown";
+import { useUser } from "@clerk/nextjs";
 
 function Navbar() {
+  const { isSignedIn, user, isLoaded } = useUser();
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
 
@@ -31,72 +33,77 @@ function Navbar() {
   };
 
   return (
-    <>
-      <nav className="navbar">
-        <Link
-          href="/"
-          className=" flex navbar-logo bg-red-500 h-20 w-20"
-          onClick={closeMobileMenu}
+    <nav className="navbar -mt-6">
+      <Link
+        href="/"
+        className=" flex navbar-logo bg-red-500 h-20 w-20"
+        onClick={closeMobileMenu}
+      >
+        <Image alt="Logo" src="/logo.jpg" width={100} height={60} />
+        <i className="fab fa-firstdraft my-auto">MOJI</i>
+      </Link>
+      <div className="menu-icon" onClick={handleClick}>
+        <i className={click ? "fas fa-times" : "fas fa-bars"}>
+          <Menu />
+        </i>
+      </div>
+      <ul className={click ? "nav-menu active" : "nav-menu"}>
+        <li className="nav-item">
+          <Link href="/" className="nav-links" onClick={closeMobileMenu}>
+            Home
+          </Link>
+        </li>
+        <li
+          className="nav-item"
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
         >
-          <Image alt="Logo" src="/logo.jpg" width={100} height={60} />
-          <i className="fab fa-firstdraft my-auto">sdfd</i>
-        </Link>
-        <div className="menu-icon" onClick={handleClick}>
-          <i className={click ? "fas fa-times" : "fas fa-bars"}>
-            <Menu />
-          </i>
-        </div>
-        <ul className={click ? "nav-menu active" : "nav-menu"}>
-          <li className="nav-item">
-            <Link href="/" className="nav-links" onClick={closeMobileMenu}>
-              Home
-            </Link>
-          </li>
-          <li
-            className="nav-item"
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
+          <Link
+            href="/services"
+            className="nav-links"
+            onClick={closeMobileMenu}
           >
-            <Link
-              href="/services"
-              className="nav-links"
-              onClick={closeMobileMenu}
-            >
-              Services <i className="fas fa-caret-down" />
-            </Link>
-            {dropdown && <Dropdown />}
-          </li>
+            Services <i className="fas fa-caret-down" />
+          </Link>
+          {dropdown && <Dropdown />}
+        </li>
+        <li className="nav-item">
+          <Link
+            href="/products"
+            className="nav-links"
+            onClick={closeMobileMenu}
+          >
+            Contact Us
+          </Link>
+        </li>
+
+        {isSignedIn ? (
+          <></>
+        ) : (
           <li className="nav-item">
             <Link
-              href="/products"
+              href="/sign-in"
               className="nav-links"
               onClick={closeMobileMenu}
             >
-              Products
+              Sign In
             </Link>
           </li>
-          <li className="nav-item">
-            <Link
-              href="/contact-us"
-              className="nav-links"
-              onClick={closeMobileMenu}
-            >
-              Contact Us
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/sign-up"
-              className="nav-links-mobile"
-              onClick={closeMobileMenu}
-            >
-              Sign Up
-            </Link>
-          </li>
-        </ul>
-        <Button />
-      </nav>
-    </>
+        )}
+
+        <li>
+          <Link
+            href="/sign-up"
+            className="nav-links-mobile"
+            onClick={closeMobileMenu}
+          >
+            {isSignedIn ? "Dashboard" : "Sign Up"}
+          </Link>
+        </li>
+      </ul>
+
+      <Button />
+    </nav>
   );
 }
 

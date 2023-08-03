@@ -1,5 +1,5 @@
 :root {
-  --primary: #1888ff;
+  --primary: #07c907;
 }
 
 .btn {
@@ -10,7 +10,7 @@
   font-size: 18px;
   color: #fff;
   cursor: pointer;
-  background-color: var(--primary);
+  background-color: #07c907;
 }
 
 .btn:hover {
