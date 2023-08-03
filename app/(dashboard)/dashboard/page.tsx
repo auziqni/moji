@@ -1,5 +1,8 @@
 import React from "react";
 
+import { Payment, columns } from "./columns";
+import { DataTable } from "./data-table";
+
 const notifications = [
   {
     title: "Your call has been confirmed.",
@@ -15,6 +18,27 @@ const notifications = [
   },
 ];
 
+const data: Payment[] = [
+  {
+    id: "128ed52a",
+    amount: 100,
+    status: "success",
+    email: "asd@kami.com",
+  },
+  {
+    id: "228ed52b",
+    amount: 78,
+    status: "pending",
+    email: "qwe@umam.com",
+  },
+  {
+    id: "328ed52c",
+    amount: 23,
+    status: "pending",
+    email: "zxc@latif.com",
+  },
+];
+
 export default function Dashboard() {
   return (
     <div className="p-5">
@@ -25,7 +49,9 @@ export default function Dashboard() {
         <Mycard />
       </div>
 
-      <div className="h-40 bg-red-500"></div>
+      <div className="h-40 ">
+        <DataTable columns={columns} data={data} />
+      </div>
     </div>
   );
 }
