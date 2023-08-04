@@ -33,7 +33,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="navbar -mt-6">
+    <nav className="navbar -mt-6 z-10 ">
       <Link
         href="/"
         className=" flex navbar-logo bg-red-500 h-20 w-20"

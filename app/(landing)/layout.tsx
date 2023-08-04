@@ -5,6 +5,8 @@ const LandingLayout = async ({ children }: { children: React.ReactNode }) => {
     <div className="">
       <Navbar />
       <main className="">{children}</main>
+      {/* <h1>{createTitle("title")}</h1> */}
+      {/* <CreateTitle title={true}> */}
     </div>
     //
   );
