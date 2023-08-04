@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MenuItems } from "./menuitems";
-import "./Dropdown.css";
+import "./dropdown.css";
 import Link from "next/link";
 
 function Dropdown() {

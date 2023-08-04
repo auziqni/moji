@@ -1,5 +1,5 @@
 import React from "react";
-import "./Button.css";
+import "./button.css";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
 
