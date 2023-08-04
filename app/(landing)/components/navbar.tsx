@@ -59,7 +59,7 @@ function Navbar() {
           onMouseLeave={onMouseLeave}
         >
           <Link
-            href="/services"
+            href="/#keyfeature"
             className="nav-links"
             onClick={closeMobileMenu}
           >
@@ -69,7 +69,7 @@ function Navbar() {
         </li>
         <li className="nav-item">
           <Link
-            href="/products"
+            href="/#contactus"
             className="nav-links"
             onClick={closeMobileMenu}
           >
