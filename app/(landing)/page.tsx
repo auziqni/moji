@@ -22,11 +22,11 @@ export default function page() {
           <h1 className="text-3xl font-bold">Moji </h1>
           <h2 className="font-bold mb-5 ml-3">Monitoring haji</h2>
           <h2 className="text-justify mb-10">
-            "Moji, aplikasi web inovatif, memberikan pemantauan lokasi, suhu
+            Moji, aplikasi web inovatif, memberikan pemantauan lokasi, suhu
             udara, dan kelembaban jemaah haji. Memastikan petugas mendapat data
             real-time untuk menjaga jamaah dengan baik dan mencegah kesesatan.
             Keamanan, kenyamanan, dan efisiensi menjadi prioritas,
-            mengoptimalkan pengalaman ibadah para peziarah di tanah suci."
+            mengoptimalkan pengalaman ibadah para peziarah di tanah suci.
           </h2>
           <div className="grid grid-cols-3">
             <div className="">
