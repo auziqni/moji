@@ -93,7 +93,7 @@ function Navbar() {
 
         <li>
           <Link
-            href="/sign-up"
+            href={isSignedIn ? "/dashboard" : "/sign-up"}
             className="nav-links-mobile"
             onClick={closeMobileMenu}
           >

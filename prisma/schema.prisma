@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Jamaah{
+  Id Int @id @default(autoincrement())
+  Nama String
+  Ismale Boolean
+  Age Int
+  Province String
+  Group String
+  Lat Float 
+  Lng Float
+  Temp Float
+  Humid Float
+}
