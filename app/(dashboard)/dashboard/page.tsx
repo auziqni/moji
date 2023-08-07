@@ -4,7 +4,31 @@ import Table from "@/components/table";
 import { CardsMonitorJamaah } from "@/lib/mock";
 import { Key } from "lucide-react";
 
-export default function Dashboard() {
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+const GetDataAllJamaah = async () => {
+  const res = await prisma.allJamaah.findMany({
+    // const res = await prisma.AllJamaah.findMany({
+    select: {
+      Id: true,
+      Nama: true,
+      Ismale: true,
+      Age: true,
+      Province: true,
+      Group: true,
+      Lat: true,
+      Lng: true,
+      Temp: true,
+      Humid: true,
+    },
+  });
+  return res;
+};
+
+export default async function Dashboard() {
+  const DataAllJamaah = await GetDataAllJamaah();
   return (
     <div className="p-5">
       <div className=" grid md:grid-cols-2 lg:grid-cols-4 gap-3   p-5">
@@ -22,8 +46,11 @@ export default function Dashboard() {
         ))}
       </div>
 
+      {/* {Data.map((datax) => (
+        <div>{datax.Nama}</div>
+      ))} */}
       <div className="p-5">
-        <Table />
+        <Table props={DataAllJamaah} />
       </div>
     </div>
   );

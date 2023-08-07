@@ -25,8 +25,21 @@ type Jamaah = {
   humid: number;
 };
 
+type JamaahServ = {
+  Id: number;
+  Nama: string;
+  Ismale: boolean;
+  Age: number;
+  Province: string;
+  Group: string;
+  Lat: number;
+  Lng: number;
+  Temp: number;
+  Humid: number;
+};
+
 type CardMonitorJamaah = {
   id: number;
   tittle: string;
-  jumlah: number;
+  jumlah: any;
 };
