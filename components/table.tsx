@@ -3,8 +3,9 @@
 // // import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-
 import type { AllJamaah } from "@prisma/client";
+import { Pencil } from "lucide-react";
+import Link from "next/link";
 const columns = [
   {
     field: "Id",
@@ -35,9 +36,9 @@ const columns = [
     flex: 0.5,
     cellClassName: "name-column--cell",
     headerClassName: "super-app-theme--header",
-    //   renderCell: (params) => (
-    //     <Link href={`/detail/${params.row.Child}`}>{params.row.Child}</Link>
-    //   ),
+    renderCell: (params: any) => (
+      <Link href={`/detail/${params.row.Child}`}>{params.row.Age}</Link>
+    ),
   },
   {
     field: "Province",
@@ -80,6 +81,14 @@ const columns = [
     flex: 0.6,
     cellClassName: "name-column--cell",
     headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "Edit",
+    headerName: "Edit",
+    width: 40,
+    cellClassName: "name-column--cell",
+    headerClassName: "super-app-theme--header",
+    renderCell: (params: any) => <Pencil className=""></Pencil>,
   },
 ];
 

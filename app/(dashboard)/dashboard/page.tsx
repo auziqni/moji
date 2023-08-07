@@ -1,12 +1,7 @@
-import React from "react";
-
-import Table from "@/components/table";
-import { Button } from "@/components/ui/button";
-import { CardsMonitorJamaah } from "@/lib/mock";
-import { Key } from "lucide-react";
-
 import { PrismaClient } from "@prisma/client";
 import InfoCounter from "@/components/infoCounter";
+import { DialogAdd } from "@/components/dialogAdd";
+import Table from "@/components/table";
 
 const prisma = new PrismaClient();
 
@@ -31,6 +26,7 @@ const GetDataAllJamaah = async () => {
 
 export default async function Dashboard() {
   const DataAllJamaah = await GetDataAllJamaah();
+
   return (
     <div className="p-10">
       <div className="mb-6 ">
@@ -39,10 +35,7 @@ export default async function Dashboard() {
 
       <div className="flex justify-between mb-2 ">
         <h1 className=" my-auto font-bold">Data Jamaah</h1>
-        <Button variant="outline" className="rounded-xl">
-          {" "}
-          Add Jamaah
-        </Button>
+        <DialogAdd />
       </div>
 
       <div className="">
