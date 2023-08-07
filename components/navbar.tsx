@@ -11,11 +11,11 @@ const Navbar = () => {
 
   // bg-[#E4EFE7]
   return (
-    <div className="flex sticky z-20 h-12 p-4 shadow-lg bg-white border-solid ">
+    <div className="flex sticky inset-0 justify-between z-20 h-16 p-4 shadow-lg ">
       <MobileSidebar />
       <h1>{getPageDecription(pathName)}</h1>
       {/* <MobileSidebar isPro={isPro} apiLimitCount={apiLimitCount} /> */}
-      <div className="flex w-full justify-end p-3">
+      <div className="">
         <UserButton afterSignOutUrl="/" />
       </div>
     </div>
