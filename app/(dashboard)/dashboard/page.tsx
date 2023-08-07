@@ -1,10 +1,12 @@
 import React from "react";
 
 import Table from "@/components/table";
+import { Button } from "@/components/ui/button";
 import { CardsMonitorJamaah } from "@/lib/mock";
 import { Key } from "lucide-react";
 
 import { PrismaClient } from "@prisma/client";
+import InfoCounter from "@/components/infoCounter";
 
 const prisma = new PrismaClient();
 
@@ -30,26 +32,20 @@ const GetDataAllJamaah = async () => {
 export default async function Dashboard() {
   const DataAllJamaah = await GetDataAllJamaah();
   return (
-    <div className="p-5">
-      <div className=" grid md:grid-cols-2 lg:grid-cols-4 gap-3   p-5">
-        {CardsMonitorJamaah.map((card) => (
-          <div
-            key={card.id}
-            className=" rounded-xl p-1 pl-2 border border-solid border-black "
-          >
-            <h2 className="text-xs">{card.tittle}</h2>
-            <h1 className="text-2xl text-right pr-4 font-semibold">
-              {card.jumlah}
-            </h1>
-            {/* <h3 className="text-xs">orang</h3> */}
-          </div>
-        ))}
+    <div className="p-10">
+      <div className="mb-6 ">
+        <InfoCounter props={DataAllJamaah} />
       </div>
 
-      {/* {Data.map((datax) => (
-        <div>{datax.Nama}</div>
-      ))} */}
-      <div className="p-5">
+      <div className="flex justify-between mb-2 ">
+        <h1 className=" my-auto font-bold">Data Jamaah</h1>
+        <Button variant="outline" className="rounded-xl">
+          {" "}
+          Add Jamaah
+        </Button>
+      </div>
+
+      <div className="">
         <Table props={DataAllJamaah} />
       </div>
     </div>
