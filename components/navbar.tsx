@@ -11,7 +11,7 @@ const Navbar = () => {
 
   // bg-[#E4EFE7]
   return (
-    <div className="flex sticky top-0 z-20 h-12 items-center p-4 shadow-lg bg-white  border border-solid border-b-black ">
+    <div className="flex sticky z-20 h-12 p-4 shadow-lg bg-white border-solid ">
       <MobileSidebar />
       <h1>{getPageDecription(pathName)}</h1>
       {/* <MobileSidebar isPro={isPro} apiLimitCount={apiLimitCount} /> */}

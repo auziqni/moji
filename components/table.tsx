@@ -6,6 +6,8 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import type { AllJamaah } from "@prisma/client";
 import { Pencil } from "lucide-react";
 import Link from "next/link";
+import { DialogEdit } from "./dialogEdit";
+
 const columns = [
   {
     field: "Id",
@@ -27,7 +29,7 @@ const columns = [
     cellClassName: "name-column--cell",
     headerClassName: "super-app-theme--header",
     renderCell: (params: any) => (
-      <h2>{params.row.gendermale ? "pria" : "wanita"}</h2>
+      <h2>{params.row.Ismale ? "pria" : "wanita"}</h2>
     ),
   },
   {
@@ -88,7 +90,7 @@ const columns = [
     width: 40,
     cellClassName: "name-column--cell",
     headerClassName: "super-app-theme--header",
-    renderCell: (params: any) => <Pencil className=""></Pencil>,
+    renderCell: (params: any) => <DialogEdit props={params} />,
   },
 ];
 

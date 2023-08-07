@@ -9,6 +9,8 @@ import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Pencil } from "lucide-react";
+
 import {
   Dialog,
   DialogContent,
@@ -37,24 +39,21 @@ const formSchema = z.object({
   Rombongan: z.string(),
 });
 
-export function DialogAdd() {
+export function DialogEdit({ props }: any) {
   const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      Nama: "",
-      Umur: 25,
-      Kelamin: true,
-      Provinsi: "",
-      Rombongan: "",
+      Nama: props.row.Nama,
+      Umur: props.row.Age,
+      Kelamin: props.row.Ismale,
+      Provinsi: props.row.Province,
+      Rombongan: props.row.Group,
     },
   });
-  const qwe = () => {
-    console.log("sdfsdfsdf");
-  };
+  const qwe = () => {};
 
   const onSubmit = (value: z.infer<typeof formSchema>) => {
-    console.log("sdf");
     toast({
       title: "Data berhasil ditambahkan",
       description: (
@@ -69,18 +68,14 @@ export function DialogAdd() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className="rounded-xl">
-          Tambah Jamaah
-        </Button>
+        <Pencil />
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Tambah Jamaah</DialogTitle>
+          <DialogTitle>Edit Jamaah</DialogTitle>
 
-          <DialogDescription>
-            Tambahkan alat monitoring untuk jamaah
-          </DialogDescription>
+          <DialogDescription>Sesuiakan Data Jemaah</DialogDescription>
         </DialogHeader>
 
         <div className="grid gap-4 py-4 w20 ">
@@ -165,7 +160,7 @@ export function DialogAdd() {
               />
               <Button
                 type="submit"
-                className="rounded-xl bg-lime-400/80 font-bold"
+                className="rounded-xl bg-lime-400/80 font-bold mt-4"
               >
                 Submit
               </Button>
