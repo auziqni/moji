@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
@@ -33,13 +34,14 @@ import { Switch } from "@/components/ui/switch";
 
 const formSchema = z.object({
   Nama: z.string().min(2).max(50),
-  Umur: z.number(),
+  Umur: z.string(),
   Kelamin: z.boolean(),
   Provinsi: z.string(),
   Rombongan: z.string(),
 });
 
 export function DialogEdit({ props }: any) {
+  const [onEdit, setOnEdit] = useState(true);
   const [open, setOpen] = useState(false);
   const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -53,18 +55,46 @@ export function DialogEdit({ props }: any) {
     },
   });
 
-  const onSubmit = (value: z.infer<typeof formSchema>) => {
+  const onSubmitEdit = async (value: z.infer<typeof formSchema>) => {
+    setOpen(false);
+    const plchUmur: number = +value.Umur;
+    await axios.post("/api/updatejamaah", {
+      Id: props.row.Id,
+      Nama: value.Nama,
+      Ismale: value.Kelamin,
+      Age: plchUmur,
+      Province: value.Provinsi,
+      Group: value.Rombongan,
+    });
+
     toast({
-      title: "Data berhasil ditambahkan",
+      title: "Data berhasil diperbarui",
       description: (
         <div>
           <h1>Nama : {value.Nama}</h1>
           <h1>Asal : {value.Provinsi}</h1>
         </div>
       ),
-      action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
     });
   };
+  const onSubmitDelete = async () => {
+    setOpen(false);
+    await axios.post("/api/deletejamaah", {
+      Id: props.row.Id,
+    });
+
+    toast({
+      variant: "destructive",
+      title: "Data berhasil dihapus",
+      description: (
+        <div>
+          <h1>Nama : {props.row.Nama}</h1>
+          <h1>Asal : {props.row.Province}</h1>
+        </div>
+      ),
+    });
+  };
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -73,14 +103,23 @@ export function DialogEdit({ props }: any) {
 
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Edit Jamaah</DialogTitle>
+          <DialogTitle>
+            Edit Jamaah <span>{props.row.Id}</span>
+          </DialogTitle>
 
           <DialogDescription>Sesuiakan Data Jemaah</DialogDescription>
         </DialogHeader>
 
         <div className="grid gap-4 py-4 w20 ">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="">
+            <form
+              onSubmit={
+                onEdit
+                  ? form.handleSubmit(onSubmitEdit)
+                  : form.handleSubmit(onSubmitDelete)
+              }
+              className=""
+            >
               <FormField
                 control={form.control}
                 name="Nama"
@@ -104,7 +143,7 @@ export function DialogEdit({ props }: any) {
                     <FormItem>
                       <FormLabel>Umur</FormLabel>
                       <FormControl>
-                        <Input placeholder="shadcn" {...field} />
+                        <Input type="number" placeholder="2" {...field} />
                       </FormControl>
 
                       <FormMessage />
@@ -158,12 +197,20 @@ export function DialogEdit({ props }: any) {
                   </FormItem>
                 )}
               />
-              <Button
-                type="submit"
-                className="rounded-xl bg-lime-400/80 font-bold mt-4"
-              >
-                Submit
-              </Button>
+              <div className="flex">
+                <Button
+                  onClick={onSubmitDelete}
+                  className="rounded-xl bg-red-400/80 font-bold mt-4"
+                >
+                  delete
+                </Button>
+                <Button
+                  type="submit"
+                  className="rounded-xl bg-lime-400/80 font-bold mt-4"
+                >
+                  Edit
+                </Button>
+              </div>
             </form>
           </Form>
         </div>
