@@ -32,10 +32,10 @@ import { Switch } from "@/components/ui/switch";
 
 const formSchema = z.object({
   Nama: z.string().min(2).max(50),
-  Umur: z.number(),
+  Umur: z.number().min(2),
   Kelamin: z.boolean(),
-  Provinsi: z.string(),
-  Rombongan: z.string(),
+  Provinsi: z.string().min(3),
+  Rombongan: z.string().min(3),
 });
 
 export function DialogAdd() {
@@ -53,7 +53,8 @@ export function DialogAdd() {
   });
 
   const onSubmit = async (value: z.infer<typeof formSchema>) => {
-    await axios.post("/api/server/addjamaah", {
+    setOpen(false);
+    await axios.post("/api/addjamaah", {
       Nama: value.Nama,
       Ismale: value.Kelamin,
       Age: value.Umur,
@@ -66,12 +67,11 @@ export function DialogAdd() {
       description: (
         <div>
           <h1>Nama : {value.Nama}</h1>
-          <h1>Asal : {value.Kelamin}</h1>
+          <h1>Asal : {value.Provinsi}</h1>
         </div>
       ),
       action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
     });
-    setOpen(false);
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
