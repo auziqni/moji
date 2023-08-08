@@ -52,7 +52,6 @@ export function DialogEdit({ props }: any) {
       Rombongan: props.row.Group,
     },
   });
-  const qwe = () => {};
 
   const onSubmit = (value: z.infer<typeof formSchema>) => {
     toast({

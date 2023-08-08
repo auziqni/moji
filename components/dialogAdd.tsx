@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
@@ -50,22 +51,27 @@ export function DialogAdd() {
       Rombongan: "",
     },
   });
-  const qwe = () => {
-    console.log("sdfsdfsdf");
-  };
 
-  const onSubmit = (value: z.infer<typeof formSchema>) => {
-    setOpen(false);
+  const onSubmit = async (value: z.infer<typeof formSchema>) => {
+    await axios.post("/api/server/addjamaah", {
+      Nama: value.Nama,
+      Ismale: value.Kelamin,
+      Age: value.Umur,
+      Province: value.Provinsi,
+      Group: value.Rombongan,
+    });
+
     toast({
       title: "Data berhasil ditambahkan",
       description: (
         <div>
           <h1>Nama : {value.Nama}</h1>
-          <h1>Asal : {value.Provinsi}</h1>
+          <h1>Asal : {value.Kelamin}</h1>
         </div>
       ),
       action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
     });
+    setOpen(false);
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>

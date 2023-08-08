@@ -11,12 +11,12 @@ datasource db {
 model AllJamaah{
   Id Int @id @default(autoincrement())
   Nama String
-  Ismale Boolean
+  Ismale Boolean?
   Age Int
   Province String
   Group String
-  Lat Float 
-  Lng Float
-  Temp Float
-  Humid Float
+  Lat Float? 
+  Lng Float?
+  Temp Float?
+  Humid Float?
 }
