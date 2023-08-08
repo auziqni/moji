@@ -6,16 +6,9 @@ const prisma = new PrismaClient();
 export async function POST(request: Request) {
   console.log("=========getrequest");
   const body: AllJamaah = await request.json();
-  const jamaah = await prisma.allJamaah.update({
+  const jamaah = await prisma.allJamaah.delete({
     where: {
       Id: body.Id,
-    },
-    data: {
-      Nama: body.Nama,
-      Ismale: body.Ismale,
-      Age: body.Age,
-      Province: body.Province,
-      Group: body.Group,
     },
   });
 
