@@ -32,7 +32,7 @@ import { Switch } from "@/components/ui/switch";
 
 const formSchema = z.object({
   Nama: z.string().min(2).max(50),
-  Umur: z.number().min(2),
+  Umur: z.string(),
   Kelamin: z.boolean(),
   Provinsi: z.string().min(3),
   Rombongan: z.string().min(3),
@@ -45,7 +45,7 @@ export function DialogAdd() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       Nama: "",
-      Umur: 25,
+      Umur: "25",
       Kelamin: true,
       Provinsi: "",
       Rombongan: "",
@@ -54,10 +54,11 @@ export function DialogAdd() {
 
   const onSubmit = async (value: z.infer<typeof formSchema>) => {
     setOpen(false);
+    const plchUmur: number = +value.Umur;
     await axios.post("/api/addjamaah", {
       Nama: value.Nama,
       Ismale: value.Kelamin,
-      Age: value.Umur,
+      Age: plchUmur,
       Province: value.Provinsi,
       Group: value.Rombongan,
     });
@@ -70,7 +71,6 @@ export function DialogAdd() {
           <h1>Asal : {value.Provinsi}</h1>
         </div>
       ),
-      action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
     });
   };
   return (
@@ -116,7 +116,7 @@ export function DialogAdd() {
                     <FormItem>
                       <FormLabel>Umur</FormLabel>
                       <FormControl>
-                        <Input placeholder="shadcn" {...field} />
+                        <Input type="number" placeholder="25" {...field} />
                       </FormControl>
 
                       <FormMessage />
