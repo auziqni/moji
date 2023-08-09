@@ -5,7 +5,7 @@ import Table from "@/components/table";
 
 const prisma = new PrismaClient();
 
-const GetDataAllJamaah = async () => {
+export const GetDataAllJamaah = async () => {
   const res = await prisma.allJamaah.findMany({
     // const res = await prisma.AllJamaah.findMany({
     select: {

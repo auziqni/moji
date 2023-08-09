@@ -15,6 +15,11 @@ export const center = {
   // lat: -5.384895,
   // lng: 105.254388,
 };
+export const centerlampung = {
+  // lampung
+  lat: -5.382372,
+  lng: 105.25873,
+};
 
 const defaultOptions = {
   strokeOpacity: 0.5,
