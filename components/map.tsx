@@ -17,11 +17,12 @@ import {
   middleOptions,
   farOptions,
 } from "@/lib/mapsettings";
-import { parajamaah } from "@/lib/mock";
+// import { parajamaah } from "@/lib/mock";
+import type { AllJamaah } from "@prisma/client";
 
-export default function Map() {
+export default function Map({ props }: { props: AllJamaah[] }) {
   const [viewweather, setviewweather] = useState(false);
-  const [selected, setSelected] = useState<Jamaah | null>(null);
+  const [selected, setSelected] = useState<AllJamaah | null>(null);
   const [myLocation, setMyLocation] = useState<MyLocation | null>(null);
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
@@ -48,17 +49,17 @@ export default function Map() {
   if (loadError) return <div>Error . . .</div>;
   if (!isLoaded) return <div>Loading . . .</div>;
 
-  function getIconMarker(jamaah: Jamaah) {
+  function getIconMarker(ismale: boolean, temp: number) {
     if (viewweather) {
-      if (jamaah.temp < 30) {
+      if (temp < 30) {
         return "/wlow.png";
-      } else if (jamaah.temp > 40) {
+      } else if (temp > 40) {
         return "/whigh.png";
       } else {
         return "/wmed.png";
       }
     } else {
-      if (jamaah.gendermale) {
+      if (ismale) {
         return "/place_male.png";
       } else {
         return "/place_female.png";
@@ -113,15 +114,15 @@ export default function Map() {
           <></>
         )}
 
-        {parajamaah.map((jamaah) => (
+        {props.map((jamaah) => (
           <Marker
-            key={jamaah.id}
-            position={{ lat: jamaah?.lat ?? 0, lng: jamaah?.lng ?? 0 }}
+            key={jamaah.Id}
+            position={{ lat: jamaah?.Lat ?? 0, lng: jamaah?.Lng ?? 0 }}
             onClick={() => {
               setSelected(jamaah);
             }}
             icon={{
-              url: `${getIconMarker(jamaah)}`,
+              url: `${getIconMarker(jamaah.Ismale ?? true, jamaah.Temp ?? 30)}`,
               origin: new window.google.maps.Point(0, 0),
               anchor: new window.google.maps.Point(15, 15),
               scaledSize: new window.google.maps.Size(45, 45),
@@ -136,27 +137,27 @@ export default function Map() {
             <Polyline
               path={[
                 { lat: myLocation?.lat ?? 0, lng: myLocation?.lng ?? 0 },
-                { lat: selected.lat, lng: selected.lng },
+                { lat: selected?.Lat ?? 0, lng: selected?.Lng ?? 0 },
               ]}
             />
             <InfoWindow
-              position={{ lat: selected.lat, lng: selected.lng }}
+              position={{ lat: selected?.Lat ?? 0, lng: selected?.Lng ?? 0 }}
               onCloseClick={() => {
                 setSelected(null);
               }}
             >
               <div className="text-black ">
                 <h2 className=" text-lg">
-                  {selected.name} <span>{selected.age} </span>
+                  {selected.Nama} <span>{selected.Age} </span>
                 </h2>
                 <h2 className="text-md">
-                  <span>{selected.negara}</span>
+                  <span>{selected.Province}</span>
                   {", "}
-                  <span>{selected.rombongan}</span>
+                  <span>{selected.Group}</span>
                 </h2>
                 <h2 className="text-md">
-                  <span>temp: </span> <span>{selected.temp}</span>{" "}
-                  <span>humid: </span> <span>{selected.humid}</span>
+                  <span>temp: </span> <span>{selected.Temp}</span>{" "}
+                  <span>humid: </span> <span>{selected.Humid}</span>
                 </h2>
                 <h2 className="text-md"></h2>
               </div>
