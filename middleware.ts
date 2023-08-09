@@ -6,6 +6,7 @@ export default authMiddleware({
     "/api/addjamaah",
     "/api/updatejamaah",
     "/api/deletejamaah",
+    "/api/updatejamaahloc",
   ],
 });
 
