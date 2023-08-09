@@ -96,9 +96,9 @@ export default function Map({ props }: { props: AllJamaah[] }) {
         onClick={changeIconMarker}
       >
         {viewweather ? (
-          <Image src="/weather.png" alt="compass" className="h-5 w-5" />
+          <Image src="/weather.png" alt="compass" height={20} width={20} />
         ) : (
-          <Image src="/place_male.png" alt="compass" className="h-5 w-5" />
+          <Image src="/place_male.png" alt="compass" height={20} width={20} />
         )}
       </button>
 
@@ -205,7 +205,7 @@ function LocateMe({ panTo }: any) {
         );
       }}
     >
-      <Image src="/compass.svg" alt="compass" />
+      <Image src="/compass.svg" alt="compass" height={20} width={20} />
     </button>
   );
 }
@@ -226,7 +226,7 @@ function LocateCenter({ panTo }: any) {
         );
       }}
     >
-      <Image src="/apartments.png" alt="compass" className="h-5 w-5" />
+      <Image src="/apartments.png" alt="compass" height={20} width={20} />
     </button>
   );
 }

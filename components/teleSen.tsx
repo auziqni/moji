@@ -34,7 +34,7 @@ const TelegramMessage = ({ props }: { props: AllJamaah[] }) => {
       className="z-10 border-none absolute top-44 right-6"
       onClick={sendMessage}
     >
-      <Image src="/notif.png" alt="compass" className="h-5 w-5" />
+      <Image src="/notif.png" alt="compass" height={20} width={20} />
     </button>
   );
 };
