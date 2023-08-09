@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import type { AllJamaah } from "@prisma/client";
+import Image from "next/image";
 
 const TelegramMessage = ({ props }: { props: AllJamaah[] }) => {
   //   const datas = props.data;
@@ -33,7 +34,7 @@ const TelegramMessage = ({ props }: { props: AllJamaah[] }) => {
       className="z-10 border-none absolute top-44 right-6"
       onClick={sendMessage}
     >
-      <img src="/notif.png" alt="compass" className="h-5 w-5" />
+      <Image src="/notif.png" alt="compass" className="h-5 w-5" />
     </button>
   );
 };

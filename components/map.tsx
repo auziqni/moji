@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useCallback, useRef } from "react";
+import Image from "next/image";
 import {
   GoogleMap,
   useJsApiLoader,
@@ -57,13 +58,11 @@ export default function Map({ props }: { props: AllJamaah[] }) {
       return distance > 7.5;
     });
     myLocation ? setjamaahOutranged(newArray) : "";
-  }, [myLocation]);
+  }, [myLocation, props]);
 
   const changeIconMarker = () => {
     setviewweather(!viewweather);
   };
-
-  const pushNotif = () => {};
 
   if (loadError) return <div>Error . . .</div>;
   if (!isLoaded) return <div>Loading . . .</div>;
@@ -97,9 +96,9 @@ export default function Map({ props }: { props: AllJamaah[] }) {
         onClick={changeIconMarker}
       >
         {viewweather ? (
-          <img src="/weather.png" alt="compass" className="h-5 w-5" />
+          <Image src="/weather.png" alt="compass" className="h-5 w-5" />
         ) : (
-          <img src="/place_male.png" alt="compass" className="h-5 w-5" />
+          <Image src="/place_male.png" alt="compass" className="h-5 w-5" />
         )}
       </button>
 
@@ -135,27 +134,22 @@ export default function Map({ props }: { props: AllJamaah[] }) {
           <></>
         )}
 
-        {jamaahOutranged.map((jamaah) => (
-          <div>
-            <Marker
-              key={jamaah.Id}
-              position={{ lat: jamaah?.Lat ?? 0, lng: jamaah?.Lng ?? 0 }}
-              onClick={() => {
-                setSelected(jamaah);
-              }}
-              icon={{
-                url: `${getIconMarker(
-                  jamaah.Ismale ?? true,
-                  jamaah.Temp ?? 30
-                )}`,
-                origin: new window.google.maps.Point(0, 0),
-                anchor: new window.google.maps.Point(15, 15),
-                scaledSize: new window.google.maps.Size(45, 45),
-              }}
-            >
-              <div className="h-5 w-24 bg-red-500">qweqweqweqweqweqweqwe</div>
-            </Marker>
-          </div>
+        {props.map((jamaah) => (
+          <Marker
+            key={jamaah.Id}
+            position={{ lat: jamaah?.Lat ?? 0, lng: jamaah?.Lng ?? 0 }}
+            onClick={() => {
+              setSelected(jamaah);
+            }}
+            icon={{
+              url: `${getIconMarker(jamaah.Ismale ?? true, jamaah.Temp ?? 30)}`,
+              origin: new window.google.maps.Point(0, 0),
+              anchor: new window.google.maps.Point(15, 15),
+              scaledSize: new window.google.maps.Size(45, 45),
+            }}
+          >
+            <div className="h-5 w-24 bg-red-500">qweqweqweqweqweqweqwe</div>
+          </Marker>
         ))}
 
         {selected ? (
@@ -211,7 +205,7 @@ function LocateMe({ panTo }: any) {
         );
       }}
     >
-      <img src="/compass.svg" alt="compass" />
+      <Image src="/compass.svg" alt="compass" />
     </button>
   );
 }
@@ -232,7 +226,7 @@ function LocateCenter({ panTo }: any) {
         );
       }}
     >
-      <img src="/apartments.png" alt="compass" className="h-5 w-5" />
+      <Image src="/apartments.png" alt="compass" className="h-5 w-5" />
     </button>
   );
 }
