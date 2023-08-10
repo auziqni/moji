@@ -20,3 +20,9 @@ model AllJamaah{
   Temp Float?
   Humid Float?
 }
+
+model UserCommunication{
+  Id Int @id @default(autoincrement())
+  UserId String @unique
+  Teleid String?
+}

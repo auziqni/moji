@@ -2,9 +2,9 @@ import React from "react";
 import axios from "axios";
 import type { AllJamaah } from "@prisma/client";
 import Image from "next/image";
+import { GetTeleId } from "./teleid";
 
 const TelegramMessage = ({ props }: { props: AllJamaah[] }) => {
-  //   const datas = props.data;
   const sendMessage = async () => {
     // const chatId1 = "1099351795"; // Ganti dengan ID chat Anda
     // const botToken = "6697266029:AAGNL-JNvJKGWFNLrk3VEVJRUOL5uDfSrHU"; // Ganti dengan token bot Anda
@@ -20,7 +20,7 @@ const TelegramMessage = ({ props }: { props: AllJamaah[] }) => {
 
     try {
       await axios.post(url, {
-        chat_id: process.env.NEXT_PUBLIC_TELE_ADMIN,
+        chat_id: "GetTeleId()",
         text: sentence,
       });
       console.log("Pesan berhasil dikirim ke Telegram");
