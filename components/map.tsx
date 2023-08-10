@@ -19,10 +19,16 @@ import {
   farOptions,
 } from "@/lib/mapsettings";
 // import { parajamaah } from "@/lib/mock";
-import type { AllJamaah } from "@prisma/client";
+import type { AllJamaah, UserCommunication } from "@prisma/client";
 import TelegramMessage from "./teleSen";
 
-export default function Map({ props }: { props: AllJamaah[] }) {
+export default function Map({
+  props,
+  teleuser,
+}: {
+  props: AllJamaah[];
+  teleuser: UserCommunication;
+}) {
   const [jamaahOutranged, setjamaahOutranged] = useState<AllJamaah[]>([]);
   const [viewweather, setviewweather] = useState(false);
   const [selected, setSelected] = useState<AllJamaah | null>(null);
@@ -102,7 +108,10 @@ export default function Map({ props }: { props: AllJamaah[] }) {
         )}
       </button>
 
-      <TelegramMessage props={jamaahOutranged} />
+      <TelegramMessage
+        props={jamaahOutranged}
+        idteleuser={teleuser.Teleid ?? ""}
+      />
 
       <GoogleMap
         id="map"
