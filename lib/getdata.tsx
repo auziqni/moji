@@ -7,30 +7,31 @@ const prisma = new PrismaClient();
 
 import { currentUser } from "@clerk/nextjs";
 
-export const GetDataAllJamaah = async () => {
-  const res = await prisma.jamaah.findMany({
-    select: {
-      id: true,
-      name: true,
-      ismale: true,
-      age: true,
-      province: true,
-      group: true,
-      namaPengurus: true,
-      lat: true,
-      lng: true,
-      temp: true,
-      humid: true,
-    },
-  });
-  return res;
-};
+// export const GetDataAllJamaah = async () => {
+//   const res = await prisma.jamaah.findMany({
+//     select: {
+//       id: true,
+//       name: true,
+//       ismale: true,
+//       age: true,
+//       province: true,
+//       group: true,
+//       namaPengurus: true,
+//       lat: true,
+//       lng: true,
+//       temp: true,
+//       humid: true,
+//     },
+//   });
+//   return res;
+// };
 
-export const GetDataJamaahPengurus = async () => {
+export const GetDataAllJamaah = async () => {
   const user = await currentUser();
   const res = await prisma.jamaah.findMany({
     where: {
-      namaPengurus: user?.username ?? "",
+      namaPengurus: user?.username === "admin" ? {} : user?.username ?? "",
+      // namaPengurus: user?.username ?? "",
     },
     select: {
       id: true,

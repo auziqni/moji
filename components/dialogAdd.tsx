@@ -62,7 +62,7 @@ export function DialogAdd({ namaPengurus }: { namaPengurus: string }) {
       age: plchUmur,
       province: value.Provinsi,
       group: value.Rombongan,
-      pengurus: namaPengurus,
+      namaPengurus: namaPengurus,
     });
 
     toast({
