@@ -88,7 +88,7 @@ export async function POST(request: Request) {
               DataJamaah?.age
             }tahun, Asal:${DataJamaah?.province}, Rombongan:${
               DataJamaah?.group
-            }`,
+            } dengan jarak:${distance * 1000}m`,
           });
           console.log("tele berhasil");
         } catch (error) {
