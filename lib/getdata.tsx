@@ -54,11 +54,13 @@ export const GetDataAdmin = async () => {
   const data = await prisma.admin.findUnique({
     where: { name: user?.username ?? "" },
     select: {
+      id: true,
       name: true,
       ismale: true,
       role: true,
       lat: true,
       lng: true,
+      contact: true,
     },
   });
 

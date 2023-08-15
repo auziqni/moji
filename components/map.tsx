@@ -11,27 +11,27 @@ import {
 } from "@react-google-maps/api";
 import {
   mapContainerStyle,
-  center,
-  centerlampung,
+  centerjakarta,
+  centeroffice,
   options,
   closeOptions,
   middleOptions,
   farOptions,
 } from "@/lib/mapsettings";
 // import { parajamaah } from "@/lib/mock";
-import type { AllJamaah, UserCommunication } from "@prisma/client";
+import type { Jamaah, Admin } from "@prisma/client";
 import TelegramMessage from "./teleSen";
 
 export default function Map({
-  props,
-  teleuser,
+  jamaahArr,
+  admin,
 }: {
-  props: AllJamaah[];
-  teleuser: UserCommunication;
+  jamaahArr: Jamaah[];
+  admin: Admin | null;
 }) {
-  const [jamaahOutranged, setjamaahOutranged] = useState<AllJamaah[]>([]);
+  const [jamaahOutranged, setjamaahOutranged] = useState<Jamaah[]>([]);
   const [viewweather, setviewweather] = useState(false);
-  const [selected, setSelected] = useState<AllJamaah | null>(null);
+  const [selected, setSelected] = useState<Jamaah | null>(null);
   const [myLocation, setMyLocation] = useState<MyLocation | null>(null);
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
@@ -53,18 +53,18 @@ export default function Map({
   }, []);
 
   useEffect(() => {
-    const newArray = props.filter((obj: AllJamaah) => {
+    const newArray = jamaahArr.filter((obj: Jamaah) => {
       const distance = calculateDistance(
-        myLocation?.lat ?? center.lat,
-        myLocation?.lng ?? center.lng,
-        obj.Lat ?? center.lat,
-        obj.Lng ?? center.lng
+        myLocation?.lat ?? centerjakarta.lat,
+        myLocation?.lng ?? centerjakarta.lng,
+        obj.lat ?? centerjakarta.lat,
+        obj.lng ?? centerjakarta.lng
       );
       console.log(distance);
       return distance > 7.5;
     });
     myLocation ? setjamaahOutranged(newArray) : "";
-  }, [myLocation, props]);
+  }, [myLocation, jamaahArr]);
 
   const changeIconMarker = () => {
     setviewweather(!viewweather);
@@ -110,14 +110,14 @@ export default function Map({
 
       <TelegramMessage
         props={jamaahOutranged}
-        idteleuser={teleuser.Teleid ?? ""}
+        idteleuser={admin?.contact ?? ""}
       />
 
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}
         zoom={12}
-        center={center}
+        center={centerjakarta}
         options={options}
         onLoad={onMapLoad}
       >
@@ -143,15 +143,15 @@ export default function Map({
           <></>
         )}
 
-        {props.map((jamaah) => (
+        {jamaahArr.map((jamaah) => (
           <Marker
-            key={jamaah.Id}
-            position={{ lat: jamaah?.Lat ?? 0, lng: jamaah?.Lng ?? 0 }}
+            key={jamaah.id}
+            position={{ lat: jamaah?.lat ?? 0, lng: jamaah?.lng ?? 0 }}
             onClick={() => {
               setSelected(jamaah);
             }}
             icon={{
-              url: `${getIconMarker(jamaah.Ismale ?? true, jamaah.Temp ?? 30)}`,
+              url: `${getIconMarker(jamaah.ismale ?? true, jamaah.temp ?? 30)}`,
               origin: new window.google.maps.Point(0, 0),
               anchor: new window.google.maps.Point(15, 15),
               scaledSize: new window.google.maps.Size(45, 45),
@@ -166,27 +166,27 @@ export default function Map({
             <Polyline
               path={[
                 { lat: myLocation?.lat ?? 0, lng: myLocation?.lng ?? 0 },
-                { lat: selected?.Lat ?? 0, lng: selected?.Lng ?? 0 },
+                { lat: selected?.lat ?? 0, lng: selected?.lng ?? 0 },
               ]}
             />
             <InfoWindow
-              position={{ lat: selected?.Lat ?? 0, lng: selected?.Lng ?? 0 }}
+              position={{ lat: selected?.lat ?? 0, lng: selected?.lng ?? 0 }}
               onCloseClick={() => {
                 setSelected(null);
               }}
             >
               <div className="text-black ">
                 <h2 className=" text-lg">
-                  {selected.Nama} <span>{selected.Age} </span>
+                  {selected.name} <span>{selected.age} </span>
                 </h2>
                 <h2 className="text-md">
-                  <span>{selected.Province}</span>
+                  <span>{selected.province}</span>
                   {", "}
-                  <span>{selected.Group}</span>
+                  <span>{selected.group}</span>
                 </h2>
                 <h2 className="text-md">
-                  <span>temp: </span> <span>{selected.Temp}</span>{" "}
-                  <span>humid: </span> <span>{selected.Humid}</span>
+                  <span>temp: </span> <span>{selected.temp}</span>{" "}
+                  <span>humid: </span> <span>{selected.humid}</span>
                 </h2>
                 <h2 className="text-md"></h2>
               </div>
@@ -227,8 +227,8 @@ function LocateCenter({ panTo }: any) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
             panTo({
-              lat: centerlampung.lat,
-              lng: centerlampung.lng,
+              lat: centeroffice.lat,
+              lng: centeroffice.lng,
             });
           },
           () => null

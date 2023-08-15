@@ -35,7 +35,7 @@ model Admin{
   lat     Float?
   lng     Float?
   posts   Jamaah[]
-
+  contact String?
 }
 
 model Jamaah{
