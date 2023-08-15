@@ -7,7 +7,7 @@ import { GetDataAllJamaah, GetDataAdmin } from "@/lib/getdata";
 export default async function Dashboard() {
   const DataAllJamaah = await GetDataAllJamaah();
   const DataAdmin = await GetDataAdmin();
-  //hihi
+
   return (
     <div className="p-10">
       <div className="mb-6 ">
