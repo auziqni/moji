@@ -1,7 +1,7 @@
 import React from "react";
-import type { AllJamaah } from "@prisma/client";
+import type { Jamaah } from "@prisma/client";
 
-export default function InfoCounter({ props }: { props: AllJamaah[] }) {
+export default function InfoCounter({ props }: { props: Jamaah[] }) {
   const CardsMonitorJamaah: CardMonitorJamaah[] = [
     {
       id: 1,
@@ -11,18 +11,18 @@ export default function InfoCounter({ props }: { props: AllJamaah[] }) {
     {
       id: 2,
       tittle: "Jamaah Pria",
-      jumlah: props.filter((person) => person.Ismale).length,
+      jumlah: props.filter((person) => person.ismale).length,
     },
     {
       id: 3,
       tittle: "Jamaah Wanita",
-      jumlah: props.filter((person) => !person.Ismale).length,
+      jumlah: props.filter((person) => !person.ismale).length,
     },
 
     {
       id: 4,
       tittle: "Jumlah Jamaah Lansia",
-      jumlah: props.filter((person) => person.Age > 50).length,
+      jumlah: props.filter((person) => person.age > 50).length,
     },
   ];
 

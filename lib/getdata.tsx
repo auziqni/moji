@@ -1,9 +1,11 @@
-"use client";
+// "use client";
 import { PrismaClient } from "@prisma/client";
-import { useUser } from "@clerk/nextjs";
+// import { useUser } from "@clerk/nextjs";
 import { centeroffice } from "@/lib/mapsettings";
 const prisma = new PrismaClient();
-const { user } = useUser();
+// const { user } = useUser();
+
+import { currentUser } from "@clerk/nextjs";
 
 export const GetDataAllJamaah = async () => {
   const res = await prisma.jamaah.findMany({
@@ -25,6 +27,7 @@ export const GetDataAllJamaah = async () => {
 };
 
 export const GetDataJamaahPengurus = async () => {
+  const user = await currentUser();
   const res = await prisma.jamaah.findMany({
     where: {
       namaPengurus: user?.username ?? "",
@@ -47,6 +50,7 @@ export const GetDataJamaahPengurus = async () => {
 };
 
 export const GetDataAdmin = async () => {
+  const user = await currentUser();
   const data = await prisma.admin.findUnique({
     where: { name: user?.username ?? "" },
     select: {
@@ -74,6 +78,7 @@ export const UpdateAdminLoc = async ({
   lat: number;
   lng: number;
 }) => {
+  const user = await currentUser();
   const data = await prisma.admin.update({
     where: { name: user?.username ?? "" },
     data: {

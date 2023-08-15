@@ -3,82 +3,86 @@
 // // import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import type { AllJamaah } from "@prisma/client";
+import type { Jamaah } from "@prisma/client";
 import { Pencil } from "lucide-react";
 import Link from "next/link";
 import { DialogEdit } from "./dialogEdit";
 
 const columns = [
   {
-    field: "Id",
+    field: "id",
     headerName: "ID",
     width: 35,
     headerClassName: "super-app-theme--header",
   },
   {
-    field: "Nama",
+    field: "name",
     headerName: "Nama",
     width: 150,
     cellClassName: "name-column--cell",
     headerClassName: "super-app-theme--header",
   },
   {
-    field: "Ismale",
+    field: "ismale",
     headerName: "Gender",
     flex: 0.7,
     cellClassName: "name-column--cell",
     headerClassName: "super-app-theme--header",
     renderCell: (params: any) => (
-      <h2>{params.row.Ismale ? "pria" : "wanita"}</h2>
+      <h2>{params.row.ismale ? "pria" : "wanita"}</h2>
     ),
   },
   {
-    field: "Age",
+    field: "age",
     headerName: "Umur",
     flex: 0.5,
     cellClassName: "name-column--cell",
     headerClassName: "super-app-theme--header",
-    renderCell: (params: any) => (
-      <Link href={`/detail/${params.row.Child}`}>{params.row.Age}</Link>
-    ),
   },
   {
-    field: "Province",
+    field: "province",
     headerName: "Provinsi",
     flex: 1,
     cellClassName: "name-column--cell",
     headerClassName: "super-app-theme--header",
   },
   {
-    field: "Group",
+    field: "group",
     headerName: "Rombongan",
     flex: 1,
     cellClassName: "name-column--cell",
     headerClassName: "super-app-theme--header",
   },
   {
-    field: "Lat",
+    field: "namaPengurus",
+    headerName: "Pengurus",
+    flex: 0.9,
+    cellClassName: "name-column--cell",
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "lat",
     headerName: "Lat",
     flex: 0.7,
     cellClassName: "name-column--cell",
     headerClassName: "super-app-theme--header",
   },
   {
-    field: "Lng",
+    field: "lng",
     headerName: "Lng",
     flex: 0.7,
     cellClassName: "name-column--cell",
     headerClassName: "super-app-theme--header",
   },
   {
-    field: "Temp",
+    field: "temp",
     headerName: "Temperature",
     flex: 0.6,
     cellClassName: "name-column--cell",
     headerClassName: "super-app-theme--header",
   },
   {
-    field: "Humid",
+    field: "humid",
     headerName: "Humidity",
     flex: 0.6,
     cellClassName: "name-column--cell",
@@ -94,7 +98,7 @@ const columns = [
   },
 ];
 
-export default function Table({ props }: { props: AllJamaah[] }) {
+export default function Table({ props }: { props: Jamaah[] }) {
   return (
     <Box
       sx={{
@@ -120,7 +124,7 @@ export default function Table({ props }: { props: AllJamaah[] }) {
             color: "green",
           },
         }}
-        getRowId={(row) => row.Id}
+        getRowId={(row) => row.id}
       />
     </Box>
   );

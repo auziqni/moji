@@ -1,15 +1,17 @@
+// "use client";
 // import { PrismaClient } from "@prisma/client";
+
 import InfoCounter from "@/components/infoCounter";
 import { DialogAdd } from "@/components/dialogAdd";
 import Table from "@/components/table";
 // import { auth } from "@clerk/nextjs";
+// import { useUser } from "@clerk/nextjs";
 
 // const prisma = new PrismaClient();
 import { GetDataAllJamaah, GetDataAdmin } from "@/lib/getdata";
 
-// const GetDataAllJamaah = async () => {
+// export const GetDataAllJamaah = async () => {
 //   const res = await prisma.jamaah.findMany({
-//     // const res = await prisma.AllJamaah.findMany({
 //     select: {
 //       id: true,
 //       name: true,
@@ -17,7 +19,7 @@ import { GetDataAllJamaah, GetDataAdmin } from "@/lib/getdata";
 //       age: true,
 //       province: true,
 //       group: true,
-//       namaPengurus:true,
+//       namaPengurus: true,
 //       lat: true,
 //       lng: true,
 //       temp: true,
@@ -28,10 +30,10 @@ import { GetDataAllJamaah, GetDataAdmin } from "@/lib/getdata";
 // };
 
 export default async function Dashboard() {
-  // const { use } = auth();
-  const DataAdmin = await GetDataAdmin();
-  console.log(DataAdmin?.name);
+  // const { user } = useUser();
+
   const DataAllJamaah = await GetDataAllJamaah();
+  const DataAdmin = await GetDataAdmin();
 
   // const data = await prisma.userCommunication.findUnique({
   //   where: { UserId: userId ?? "" },
@@ -64,7 +66,9 @@ export default async function Dashboard() {
       </div>
 
       <div className="flex justify-between mb-2 ">
-        <h1 className=" my-auto font-bold">Data Jamaah</h1>
+        <h1 className=" my-auto font-bold">
+          Data Jamaah <span>{DataAdmin?.name}</span>
+        </h1>
         <DialogAdd />
       </div>
 
