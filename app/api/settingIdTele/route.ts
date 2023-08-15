@@ -1,16 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import type { UserCommunication } from "@prisma/client";
+import type { Admin } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function POST(request: Request) {
-  const body: UserCommunication = await request.json();
-  const jamaah = await prisma.userCommunication.update({
+  const body: Admin = await request.json();
+  const jamaah = await prisma.admin.update({
     where: {
-      UserId: body.UserId,
+      name: body.name,
     },
     data: {
-      Teleid: body.Teleid,
+      contact: body.contact,
     },
   });
 

@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 import { Input } from "@/components/ui/input";
-
+import type { Jamaah, Admin } from "@prisma/client";
 import {
   Form,
   FormControl,
@@ -24,24 +24,19 @@ const formSchema = z.object({
   teleid: z.string().min(2).max(50),
 });
 
-type prop = {
-  userid: string;
-  teleid: string;
-};
-
-export function FormSettings({ prop }: { prop: prop }) {
+export function FormSettings({ admin }: { admin: Admin | null }) {
   const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      teleid: prop.teleid, //todo
+      teleid: admin?.contact ?? "", //todo
     },
   });
 
   const onSubmit = async (value: z.infer<typeof formSchema>) => {
     await axios.post("/api/settingIdTele", {
-      UserId: prop.userid,
-      Teleid: value.teleid,
+      name: admin?.name,
+      contact: value.teleid,
     });
 
     toast({
@@ -67,7 +62,12 @@ export function FormSettings({ prop }: { prop: prop }) {
                 <FormItem>
                   <FormLabel className="font-bold">Telegram Chat Id</FormLabel>
                   <FormControl>
-                    <Input placeholder="870..." className="" {...field} />
+                    <Input
+                      type="number"
+                      placeholder="Masukan ID Telegram"
+                      className=""
+                      {...field}
+                    />
                   </FormControl>
 
                   <FormMessage />
