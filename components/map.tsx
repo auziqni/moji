@@ -110,7 +110,7 @@ export default function Map({
 
       <TelegramMessage
         props={jamaahOutranged}
-        idteleuser={admin?.contact ?? ""}
+        idteleuser={admin?.contact ?? null}
       />
 
       <GoogleMap

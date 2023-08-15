@@ -92,3 +92,17 @@ export const UpdateAdminLoc = async ({
 
   return data;
 };
+
+export const GetTeleId = async () => {
+  const user = await currentUser();
+
+  const data = await prisma.admin.findUnique({
+    where: { name: user?.username ?? "" },
+  });
+
+  if (data) {
+    return data.contact;
+  } else {
+    return null;
+  }
+};
