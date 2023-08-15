@@ -94,7 +94,7 @@ const columns = [
     width: 40,
     cellClassName: "name-column--cell",
     headerClassName: "super-app-theme--header",
-    renderCell: (params: any) => <DialogEdit props={params} />,
+    renderCell: (params: any) => <DialogEdit props={params.row} />,
   },
 ];
 

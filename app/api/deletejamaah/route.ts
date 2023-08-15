@@ -1,14 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import type { AllJamaah } from "@prisma/client";
+import type { Jamaah } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function POST(request: Request) {
-  console.log("=========getrequest");
-  const body: AllJamaah = await request.json();
-  const jamaah = await prisma.allJamaah.delete({
+  const body: Jamaah = await request.json();
+  const jamaah = await prisma.jamaah.delete({
     where: {
-      Id: body.Id,
+      id: body.id,
     },
   });
 
