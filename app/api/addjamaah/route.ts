@@ -1,18 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import type { AllJamaah } from "@prisma/client";
+import type { Jamaah } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function POST(request: Request) {
-  console.log("=========getrequest");
-  const body: AllJamaah = await request.json();
-  const jamaah = await prisma.allJamaah.create({
+  const body: Jamaah = await request.json();
+  const jamaah = await prisma.jamaah.create({
     data: {
-      Nama: body.Nama,
-      Ismale: body.Ismale,
-      Age: body.Age,
-      Province: body.Province,
-      Group: body.Group,
+      name: body.name,
+      ismale: body.ismale,
+      age: body.age,
+      province: body.province,
+      group: body.group,
+      pengurus: { connect: { name: body.namaPengurus ?? "admin" } },
     },
   });
 

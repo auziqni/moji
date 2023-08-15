@@ -18,7 +18,7 @@ export default async function Dashboard() {
         <h1 className=" my-auto font-bold">
           Data Jamaah <span>{DataAdmin?.name}</span>
         </h1>
-        <DialogAdd />
+        <DialogAdd namaPengurus={DataAdmin?.name ?? ""} />
       </div>
 
       <div className="">

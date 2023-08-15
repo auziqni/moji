@@ -46,7 +46,7 @@ model Jamaah{
   province String
   group String
   pengurus Admin @relation(fields: [namaPengurus],references: [name])
-  namaPengurus String 
+  namaPengurus String @default("admin")
   lat Float? 
   lng Float?
   temp Float?

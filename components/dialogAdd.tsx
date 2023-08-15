@@ -10,6 +10,7 @@ import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { GetDataAdmin } from "@/lib/getdata";
 import {
   Dialog,
   DialogContent,
@@ -38,7 +39,7 @@ const formSchema = z.object({
   Rombongan: z.string().min(3),
 });
 
-export function DialogAdd() {
+export function DialogAdd({ namaPengurus }: { namaPengurus: string }) {
   const [open, setOpen] = useState(false);
   const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -56,11 +57,12 @@ export function DialogAdd() {
     setOpen(false);
     const plchUmur: number = +value.Umur;
     await axios.post("/api/addjamaah", {
-      Nama: value.Nama,
-      Ismale: value.Kelamin,
-      Age: plchUmur,
-      Province: value.Provinsi,
-      Group: value.Rombongan,
+      name: value.Nama,
+      ismale: value.Kelamin,
+      age: plchUmur,
+      province: value.Provinsi,
+      group: value.Rombongan,
+      pengurus: namaPengurus,
     });
 
     toast({
