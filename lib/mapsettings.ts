@@ -7,7 +7,7 @@ export const options = {
   zoomControl: true,
 };
 
-export const center = {
+export const centerjakarta = {
   // jakarta
   lat: -6.246831,
   lng: 106.877121,
@@ -15,7 +15,7 @@ export const center = {
   // lat: -5.384895,
   // lng: 105.254388,
 };
-export const centerlampung = {
+export const centeroffice = {
   // lampung
   lat: -5.382372,
   lng: 105.25873,

@@ -1,43 +1,47 @@
-import { PrismaClient } from "@prisma/client";
+// import { PrismaClient } from "@prisma/client";
 import InfoCounter from "@/components/infoCounter";
 import { DialogAdd } from "@/components/dialogAdd";
 import Table from "@/components/table";
-import { auth } from "@clerk/nextjs";
+// import { auth } from "@clerk/nextjs";
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
+import { GetDataAllJamaah, GetDataAdmin } from "@/lib/getdata";
 
-const GetDataAllJamaah = async () => {
-  const res = await prisma.allJamaah.findMany({
-    // const res = await prisma.AllJamaah.findMany({
-    select: {
-      Id: true,
-      Nama: true,
-      Ismale: true,
-      Age: true,
-      Province: true,
-      Group: true,
-      Lat: true,
-      Lng: true,
-      Temp: true,
-      Humid: true,
-    },
-  });
-  return res;
-};
+// const GetDataAllJamaah = async () => {
+//   const res = await prisma.jamaah.findMany({
+//     // const res = await prisma.AllJamaah.findMany({
+//     select: {
+//       id: true,
+//       name: true,
+//       ismale: true,
+//       age: true,
+//       province: true,
+//       group: true,
+//       namaPengurus:true,
+//       lat: true,
+//       lng: true,
+//       temp: true,
+//       humid: true,
+//     },
+//   });
+//   return res;
+// };
 
 export default async function Dashboard() {
-  const { userId } = auth();
+  // const { use } = auth();
+  const DataAdmin = await GetDataAdmin();
+  console.log(DataAdmin?.name);
   const DataAllJamaah = await GetDataAllJamaah();
 
-  const data = await prisma.userCommunication.findUnique({
-    where: { UserId: userId ?? "" },
-  });
+  // const data = await prisma.userCommunication.findUnique({
+  //   where: { UserId: userId ?? "" },
+  // });
 
-  if (!data) {
-    await prisma.userCommunication.create({
-      data: { UserId: userId ?? "" },
-    });
-  }
+  // if (!data) {
+  //   await prisma.userCommunication.create({
+  //     data: { UserId: userId ?? "" },
+  //   });
+  // }
 
   // useEffect(() => {
   //   const newArray = props.filter((obj: AllJamaah) => {
