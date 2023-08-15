@@ -177,7 +177,8 @@ export default function Map({
             >
               <div className="text-black ">
                 <h2 className=" text-lg">
-                  {selected.name} <span>{selected.age} </span>
+                  <span>{selected.id}. </span>
+                  {selected.name} <span>{selected.age}th </span>
                 </h2>
                 <h2 className="text-md">
                   <span>{selected.province}</span>
@@ -203,15 +204,12 @@ function LocateMe({ panTo }: any) {
     <button
       className="z-10 bg-transparent border-none absolute top-20 right-6  h-6 w-6"
       onClick={() => {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            panTo({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            });
-          },
-          () => null
-        );
+        navigator.geolocation.getCurrentPosition((position) => {
+          panTo({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+        });
       }}
     >
       <Image src="/compass.svg" alt="compass" height={20} width={20} />
