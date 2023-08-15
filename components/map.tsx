@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
+import axios from "axios";
 import {
   GoogleMap,
   useJsApiLoader,
@@ -93,7 +94,7 @@ export default function Map({
   }
   return (
     <main>
-      <LocateMe panTo={panTo} />
+      <LocateMe panTo={panTo} admin={admin} />
 
       <LocateCenter panTo={panTo} />
 
@@ -199,18 +200,27 @@ export default function Map({
   );
 }
 
-function LocateMe({ panTo }: any) {
+function LocateMe({ panTo, admin }: { panTo: any; admin: Admin | null }) {
+  const onClicka = () => {
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      await axios.post("/api/updateadminloc", {
+        // name: admin.name,
+        name: admin?.name ?? "",
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+
+      panTo({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    });
+  };
+
   return (
     <button
       className="z-10 bg-transparent border-none absolute top-20 right-6  h-6 w-6"
-      onClick={() => {
-        navigator.geolocation.getCurrentPosition((position) => {
-          panTo({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
-        });
-      }}
+      onClick={onClicka}
     >
       <Image src="/compass.svg" alt="compass" height={20} width={20} />
     </button>
