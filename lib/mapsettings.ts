@@ -11,9 +11,6 @@ export const centerjakarta = {
   // jakarta
   lat: -6.246831,
   lng: 106.877121,
-  // rajabasa
-  // lat: -5.384895,
-  // lng: 105.254388,
 };
 export const centeroffice = {
   // lampung

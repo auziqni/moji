@@ -12,7 +12,6 @@ export default async function Mappage() {
 
   return (
     <main>
-      {/* <Map jamaahArr={DataAllJamaah} admin={DataAdmin} /> */}
       <Map jamaahArr={DataAllJamaah} admin={DataAdmin} />
     </main>
   );
