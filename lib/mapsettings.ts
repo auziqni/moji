@@ -14,8 +14,8 @@ export const centerjakarta = {
 };
 export const centeroffice = {
   // lampung
-  lat: -5.382372,
-  lng: 105.25873,
+  lat: 21.42251,
+  lng: 39.82618,
 };
 
 const defaultOptions = {
