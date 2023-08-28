@@ -136,9 +136,10 @@ export default function Map({
                 scaledSize: new window.google.maps.Size(45, 45),
               }}
             ></Marker>
-            <Circle center={myLocation} radius={2500} options={closeOptions} />
-            <Circle center={myLocation} radius={5000} options={middleOptions} />
-            <Circle center={myLocation} radius={7500} options={farOptions} />
+            // todo check data
+            <Circle center={myLocation} radius={50} options={closeOptions} />
+            <Circle center={myLocation} radius={75} options={middleOptions} />
+            <Circle center={myLocation} radius={100} options={farOptions} />
           </>
         ) : (
           <></>

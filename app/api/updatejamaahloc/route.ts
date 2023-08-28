@@ -78,7 +78,8 @@ export async function POST(request: Request) {
         body.lng
       );
 
-      if (distance > 7.5) {
+      // todo
+      if (distance > 0.1) {
         try {
           await axios.post(url, {
             chat_id: DataAdmin?.contact,
