@@ -145,5 +145,5 @@ function calculateDistance(
 }
 
 function degToRad(deg: number) {
-  return deg * (Math.PI / 180);
+  return deg * (Math.PI / 180) * 1000;
 }
