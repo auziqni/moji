@@ -124,26 +124,59 @@ export async function POST(request: Request) {
   // return NextResponse.json(DataAdmin);
 }
 
+// function calculateDistance(
+//   lat1: number,
+//   lng1: number,
+//   lat2: number,
+//   lng2: number
+// ) {
+//   const R = 6371; // Radius of the Earth in kilometers
+//   const dLat = degToRad(lat2 - lat1);
+//   const dLon = degToRad(lng2 - lng1);
+//   const a =
+//     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+//     Math.cos(degToRad(lat1)) *
+//       Math.cos(degToRad(lat2)) *
+//       Math.sin(dLon / 2) *
+//       Math.sin(dLon / 2);
+//   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+//   const distance = R * c;
+//   return distance;
+// }
+
+// function degToRad(deg: number) {
+//   return deg * (Math.PI / 180) * 1000;
+// }
+
 function calculateDistance(
   lat1: number,
   lng1: number,
   lat2: number,
   lng2: number
-) {
-  const R = 6371; // Radius of the Earth in kilometers
-  const dLat = degToRad(lat2 - lat1);
-  const dLon = degToRad(lng2 - lng1);
+): number {
+  const earthRadius = 6371000; // Radius bumi dalam meter
+
+  // Mengonversi sudut ke radian
+  const degToRad = (deg: number) => {
+    return deg * (Math.PI / 180);
+  };
+
+  // Perbedaan lat dan lng antara dua titik
+  const deltaLat = degToRad(lat2 - lat1);
+  const deltaLng = degToRad(lng2 - lng1);
+
+  // Menggunakan rumus Haversine
   const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
     Math.cos(degToRad(lat1)) *
       Math.cos(degToRad(lat2)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const distance = R * c;
-  return distance;
-}
+      Math.sin(deltaLng / 2) *
+      Math.sin(deltaLng / 2);
 
-function degToRad(deg: number) {
-  return deg * (Math.PI / 180) * 1000;
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  // Jarak dalam meter
+  const distance = earthRadius * c;
+
+  return distance;
 }
