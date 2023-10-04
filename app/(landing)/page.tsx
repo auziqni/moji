@@ -41,7 +41,11 @@ export default function page() {
             </div>
             <div className="">
               <h1 className="font-bold">Alamat</h1>
-              <h1>jl.kemana saja hayuk no.0821</h1>
+              <h1>
+                {" "}
+                Jl. Terusan Ryacudu, Way Huwi, Kec. Jati Agung, Kabupaten
+                Lampung Selatan, Lampung 35365
+              </h1>
             </div>
           </div>
         </div>
